@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enso Capital — Investment, Private Equity, Venture Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1e1e1e;
+    --bg-alt: #252525;
+    --bg-card: #2a2a2a;
+    --text: #f0ede8;
+    --muted: #8a8680;
+    --accent: #ffffff;
+    --accent-light: #e0e0e0;
+    --border: rgba(255,255,255,0.15);
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    height: 80px;
+    background: #323232;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center;
+    text-decoration: none;
+  }
+
+  .nav-logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.03) 0%, transparent 70%),
+                radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.02) 0%, transparent 60%);
+  }
+
+  .hero-content { position: relative; max-width: 780px; }
+
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block; width: 40px; height: 1px;
+    background: var(--accent);
+  }
+
+  h1.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(52px, 7vw, 88px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 36px;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    color: var(--accent-light);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.9;
+    margin-bottom: 56px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 16px 36px;
+    transition: all 0.3s;
+    font-weight: 400;
+  }
+  .hero-cta:hover {
+    background: rgba(201,184,130,0.08);
+    border-color: var(--accent);
+  }
+  .hero-cta svg { transition: transform 0.3s; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 60px;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted); writing-mode: vertical-rl;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-scroll::after {
+    content: ''; display: block; width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 120px 60px; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block; width: 40px; height: 1px;
+    background: var(--accent);
+  }
+
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 4vw, 54px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+
+  /* ── PHILOSOPHY ── */
+  #philosophy { background: var(--bg); }
+
+  .philosophy-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .philosophy-left .intro-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent-light);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .philosophy-left .enso-meaning {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .philosophy-left p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .philosophy-right { padding-top: 80px; }
+
+  .pillar {
+    padding: 36px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pillar:first-child { border-top: 1px solid var(--border); }
+
+  .pillar-num {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .pillar h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .pillar p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ── TEAM ── */
+  #team { background: var(--bg-alt); }
+
+  .team-inner { max-width: 1200px; margin: 0 auto; }
+
+  .team-header { margin-bottom: 80px; }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .team-card {
+    background: var(--bg-card);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .team-card:hover { background: #2f2f2f; }
+
+  .team-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 2px; height: 0;
+    background: var(--accent);
+    transition: height 0.4s;
+  }
+  .team-card:hover::before { height: 100%; }
+
+  .team-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: rgba(201,184,130,0.1);
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--accent);
+    font-weight: 300;
+  }
+
+  .team-role {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .team-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .team-bio {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .team-linkedin {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 28px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+    font-weight: 400;
+  }
+  .team-linkedin:hover { opacity: 0.7; }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--bg); }
+
+  .portfolio-inner { max-width: 1200px; margin: 0 auto; }
+
+  .portfolio-header { margin-bottom: 80px; }
+
+  .portfolio-category {
+    margin-bottom: 64px;
+  }
+
+  .portfolio-cat-label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+
+  .portfolio-companies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2px;
+  }
+
+  .portfolio-item {
+    background: var(--bg-card);
+    padding: 36px 32px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100px;
+    transition: background 0.3s;
+    text-decoration: none;
+  }
+  .portfolio-item:hover { background: #2f2f2f; }
+
+  .portfolio-item span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-align: center;
+    transition: color 0.3s;
+  }
+  .portfolio-item:hover span { color: var(--accent-light); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg-alt); }
+
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .contact-left h2 { margin-bottom: 32px; }
+
+  .contact-details { margin-top: 48px; }
+
+  .contact-row {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-row:first-child { border-top: 1px solid var(--border); }
+
+  .contact-key {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 6px; font-weight: 400;
+  }
+  .contact-val {
+    font-size: 14px; color: var(--text);
+  }
+  .contact-val a {
+    color: var(--text); text-decoration: none; transition: color 0.2s;
+  }
+  .contact-val a:hover { color: var(--accent); }
+
+  .contact-right {
+    padding-top: 80px;
+  }
+
+  .form-group { margin-bottom: 28px; }
+
+  .form-group label {
+    display: block;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px; font-weight: 400;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%; background: transparent;
+    border: none; border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-bottom-color: var(--accent); }
+  .form-group textarea { resize: none; height: 100px; }
+
+  .form-submit {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--bg);
+    background: var(--text);
+    border: none; padding: 18px 40px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    transition: background 0.3s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--accent-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 48px 60px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--bg);
+  }
+
+  .footer-brand {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted); font-weight: 400;
+  }
+
+  .footer-copy {
+    font-size: 12px; color: var(--muted);
+  }
+
+  .footer-address {
+    font-size: 12px; color: var(--muted); text-align: right;
+    line-height: 1.7;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag  { animation: fadeUp 0.8s ease 0.1s both; }
+  .hero-title { animation: fadeUp 0.8s ease 0.25s both; }
+  .hero-sub   { animation: fadeUp 0.8s ease 0.4s both; }
+  .hero-cta   { animation: fadeUp 0.8s ease 0.55s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    #hero { padding: 100px 24px 60px; }
+    .philosophy-inner,
+    .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+    .team-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-address { text-align: center; }
+    .hero-scroll { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="data:image/png;base64,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" alt="Enso Capital" class="nav-logo-img">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <p class="hero-tag">Principal Investor</p>
+    <h1 class="hero-title">Long-term capital.<br><em>Enduring value.</em></h1>
+    <p class="hero-sub">Enso Capital invests in businesses that benefit from global rising tides — actively partnering with founders to unlock their full potential.</p>
+    <a href="#philosophy" class="hero-cta">
+      Our Philosophy
+      <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+        <path d="M1 5H15M11 1L15 5L11 9" stroke="#c9b882" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-left">
+      <p class="section-label">Investment Philosophy</p>
+      <h2 class="section-title">Patient capital with active partnership</h2>
+      <p class="intro-text">"We invest in businesses that fundamentally enhance the world around us — unconstrained by typical private equity time horizons."</p>
+      <p class="enso-meaning">The ensō (円相) is a Zen circle — hand-drawn in a single brushstroke. It is deliberately imperfect, open, and unfinished. It represents the freedom to let things be as they are, the space for growth, and the completeness found in simplicity.</p>
+      <p class="enso-meaning">For us, the ensō captures how we invest. We take a long view, leave room for businesses to grow into their potential, and believe that the most enduring value is built without forcing an outcome.</p>
+
+    </div>
+    <div class="philosophy-right">
+      <div class="pillar">
+        <p class="pillar-num">01</p>
+        <h3>Long-Term Orientation</h3>
+        <p>We are not constrained by typical fund timelines. Our investments are structured to allow businesses the runway they need to compound value meaningfully over time.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-num">02</p>
+        <h3>Active Value Creation</h3>
+        <p>We engage deeply with management teams, bringing strategic guidance, operational expertise, and curated networks to accelerate growth.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-num">03</p>
+        <h3>Thematic Conviction</h3>
+        <p>We invest where global structural trends create durable competitive advantages — placing capital behind businesses that are genuinely built for the future.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-num">04</p>
+        <h3>Principal Alignment</h3>
+        <p>Enso Capital invests its own balance sheet. Our interests are fully aligned with the founders and businesses we back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="team-inner">
+    <div class="team-header">
+      <p class="section-label">The Team</p>
+    </div>
+    <div class="team-grid">
+      <!-- Anton -->
+      <div class="team-card">
+        <div class="team-avatar">AN</div>
+        <p class="team-role">CEO</p>
+        <h3 class="team-name">Anton Newbury</h3>
+        <a href="https://www.linkedin.com/in/anton-newbury-a10344bb/" target="_blank" class="team-linkedin">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <!-- Riaan -->
+      <div class="team-card">
+        <div class="team-avatar">RS</div>
+        <p class="team-role">Investment Principal</p>
+        <h3 class="team-name">Riaan Schmulian<br><small style="font-size:14px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:300;">CA(SA), CFA</small></h3>
+        <a href="https://www.linkedin.com/in/riaan-schmulian-ca-sa-cfa-7985b2137/" target="_blank" class="team-linkedin">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <!-- Sarah -->
+      <div class="team-card">
+        <div class="team-avatar">SL</div>
+        <p class="team-role">Executive Assistant</p>
+        <h3 class="team-name">Sarah Lane</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-inner">
+    <div class="portfolio-header">
+      <p class="section-label">Portfolio</p>
+    </div>
+
+    <div class="portfolio-category">
+      <p class="portfolio-cat-label">Operating Businesses</p>
+      <div class="portfolio-companies">
+        <div class="portfolio-item"><span>Financial Services</span></div>
+        <div class="portfolio-item"><span>FMCG</span></div>
+        <div class="portfolio-item"><span>Tech</span></div>
+      </div>
+    </div>
+
+    <div class="portfolio-category">
+      <p class="portfolio-cat-label">Real Estate</p>
+      <div class="portfolio-companies">
+        <div class="portfolio-item"><span>Enso Property Investments</span></div>
+      </div>
+    </div>
+
+    <div class="portfolio-category">
+      <p class="portfolio-cat-label">Private Credit</p>
+      <div class="portfolio-companies">
+        <div class="portfolio-item"><span>Nitenso Private Credit Solutions</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner" style="grid-template-columns: 1fr;">
+    <div class="contact-left">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's explore an opportunity together</h2>
+      <p style="font-size:14px;color:var(--muted);line-height:1.9;">Reach out if your business could benefit from our investment philosophy and operational expertise.</p>
+      <div class="contact-details">
+        <div class="contact-row">
+          <p class="contact-key">Address</p>
+          <p class="contact-val">25 Protea Road, 2nd Floor, The Terraces<br>Claremont, 7708</p>
+        </div>
+        <div class="contact-row">
+          <p class="contact-key">Riaan Schmulian — Investment Principal</p>
+          <p class="contact-val"><a href="mailto:riaan@enso.capital">riaan@enso.capital</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Enso Capital</span>
+  <span class="footer-copy">© 2025 Enso Capital. All rights reserved.</span>
+  <span class="footer-address">25 Protea Road, 2nd Floor, The Terraces<br>Claremont, 7708</span>
+</footer>
+
+</body>
+</html>
